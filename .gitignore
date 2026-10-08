@@ -1,5 +1,16 @@
-# Object file
-*.o
+# Konfiguracja środowiska
+.env
 
-# Ada Library Information
+# Alire (pobrane zależności i katalogi robocze)
+alire/cache/
+alire/sessions/
+config/
+obj/
+bin/
+
+# Pliki tymczasowe kompilatora GNAT
 *.ali
+*.o
+b__*.ads
+b__*.adb
+b__*.ali
