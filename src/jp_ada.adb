@@ -1,7 +1,8 @@
-with Ada.Text_IO;
-use Ada.Text_IO;
+with Global_Types;
+with Logger;
 
 procedure jp_ada is
 begin
-   Put_Line("Hello Ada!");
+   Logger.Log(1,"Admin" ,"Hello from logger!");
+   Logger.Log_Raport("!!!  Raport   !!!" ,"Hello from logger_raport!");
 end jp_ada;
