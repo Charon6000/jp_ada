@@ -1,16 +1,22 @@
+with Global_Types;
+use Global_Types;
 with Logger;
-
 package body Unloading is
    task body Unloading_Task is
-      Current_Delivery : Delivery;
+      --  Had to make access type for truck to change products amount
+      Current_Delivery : Truck.Truck_Access;
       Has_Delivery : Boolean := False;
    begin
       loop
          select
             when not Has_Delivery =>
-               accept New_Delivery (New_Delivery : Delivery) do
+               accept New_Delivery (New_Delivery : Truck.Truck_Access) do
                   Logger.Log (Module => 1, Sender => "Unloading",
-                  Message => "Starting to unload new delivery");
+                  Message => "Starting to unload " &
+                  Truck_Id'Image (New_Delivery.ID) &
+                  " delivery");
+                  New_Delivery.Start_Unloading;
+                  --  Maping Truck values on delivery
                   Current_Delivery := New_Delivery;
                   Has_Delivery := True;
                end New_Delivery;
@@ -21,7 +27,7 @@ package body Unloading is
                if Current_Delivery.Amount > 0 then
                   Logger.Log (Module => 1, Sender => "Unloading",
                   Message => "Giving product to the robot.");
-                  Current_Delivery.Amount := Current_Delivery.Amount - 1;
+                  Current_Delivery.Give_Product (Amount_Taken => 1);
                else
                   Has_Delivery := False;
                   Logger.Log (Module => 1, Sender => "Unloading",

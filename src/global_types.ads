@@ -12,13 +12,13 @@ package Global_Types is
       ID : Truck_Id;
       Product : Product_Type;
       Amount : Natural;
-      Waiting_Time : Duration;
    end record;
 
    --  Arrays
 
    --  Constants
    Max_Hub_Capacity : constant Natural := 100;
+   Max_Truck_Waiting_Time : constant Natural := 20;
 
 private
 
