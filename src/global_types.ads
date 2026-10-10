@@ -11,7 +11,7 @@ package Global_Types is
    type Delivery is record
       ID : Truck_Id;
       Product : Product_Type;
-      Amount : Positive;
+      Amount : Natural;
       Waiting_Time : Duration;
    end record;
 
