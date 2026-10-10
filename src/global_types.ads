@@ -1,7 +1,12 @@
+with Ada.Numerics.Discrete_Random;
 package Global_Types is
-
    --  Enums
    type Product_Type is (Laptop, Telewizor, Pralka);
+
+   --  Randomizer
+      subtype Zakres is Integer range 1 .. 5;
+      package Random is
+         new Ada.Numerics.Discrete_Random (Zakres);
 
    --  Integers
    type Truck_Id is range 1 .. 100;
@@ -19,7 +24,6 @@ package Global_Types is
    --  Constants
    Max_Hub_Capacity : constant Natural := 100;
    Max_Truck_Waiting_Time : constant Natural := 20;
-
 private
 
 end Global_Types;

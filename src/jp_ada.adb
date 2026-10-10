@@ -2,6 +2,7 @@ with Global_Types;
 with Hub;
 with Unloading;
 with Truck;
+with Robot;
 --  Main procedure of the project
 procedure jp_ada is
    --  Creating a truck pointer
@@ -10,11 +11,16 @@ procedure jp_ada is
       Product => Global_Types.Laptop,
       Amount => 10
    );
+   --  Creating Unloader
+   Unloader : Unloading.Unloading_Task (ID => 1);
+   --  Creating robot
+   Simple_Bot : Robot.Robot_Task (ID => 1);
 begin
    --  Creating a Hub
    Hub.Hub_Task.Get (Global_Types.Laptop, 10);
    --  Giving Delivery to the unloader
-   Unloading.Unloading_Task.New_Delivery (New_Delivery => Simple_Truck);
+   Unloader.New_Delivery (New_Delivery => Simple_Truck);
+   Simple_Bot.Transport (Product => Simple_Truck.Product, Amount => 1);
    --  Closing Objects
    Hub.Hub_Task.Kill;
 end jp_ada;
