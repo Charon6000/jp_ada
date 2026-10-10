@@ -1,7 +1,7 @@
 package Global_Types is
 
    --  Enums
-   type Product_Type is (Smartfon, Laptop, Telewizor, Pralka);
+   type Product_Type is (Laptop, Telewizor, Pralka);
 
    --  Integers
    type Truck_Id is range 1 .. 100;
@@ -9,9 +9,9 @@ package Global_Types is
 
    --  Records
    type Delivery is record
-      ID: Truck_Id;
-      Product: Product_Type;
-      Amount: Positive;
+      ID : Truck_Id;
+      Product : Product_Type;
+      Amount : Positive;
       Waiting_Time : Duration;
    end record;
 
