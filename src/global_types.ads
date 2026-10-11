@@ -11,6 +11,7 @@ package Global_Types is
    --  Integers
    type Truck_Id is range 1 .. 100;
    type Robot_Id is range 1 .. 100;
+   type Unloader_Id is range 1 .. 100;
 
    --  Records
    type Delivery is record

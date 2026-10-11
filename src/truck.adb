@@ -48,7 +48,7 @@ package body Truck is
                Logger.Log (Module => 1, Sender => "Truck" &
                Truck_Id'Image (ID),
                Message => "Looking for unloader");
-               Waiting_Time := Waiting_Time + 3;
+               Waiting_Time := Waiting_Time + Max_Truck_Waiting_Time / 10;
             end if;
          end select;
       end loop;
