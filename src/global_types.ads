@@ -20,7 +20,7 @@ package Global_Types is
    end record;
 
    --  Arrays
-
+   
    --  Constants
    Max_Hub_Capacity : constant Natural := 100;
    Max_Truck_Waiting_Time : constant Natural := 20;

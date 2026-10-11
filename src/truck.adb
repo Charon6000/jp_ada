@@ -7,7 +7,7 @@ package body Truck is
    begin
       Logger.Log (Module => 1, Sender => "Truck" &
       Truck_Id'Image (ID),
-      Message => "Starting with delivery number" &
+      Message => "Arrived delivery number" &
       Truck_Id'Image (ID));
       loop
          if Waiting_Time > Max_Truck_Waiting_Time then
@@ -30,6 +30,10 @@ package body Truck is
                " of " & Product_Type'Image (Product) &
                " to unloader");
             end Give_Product;
+         or
+            accept Check_Amount (Products_Amount : out Natural) do
+               Products_Amount := Remaining_Amount;
+            end Check_Amount;
          or
             accept Start_Unloading;
             delay 3.0;

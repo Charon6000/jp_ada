@@ -6,6 +6,7 @@ package body Unloading is
       --  Had to make access type for truck to change products amount
       Current_Delivery : Truck.Truck_Access;
       Has_Delivery : Boolean := False;
+      Temp_Amount : Natural;
    begin
       loop
          select
@@ -27,7 +28,12 @@ package body Unloading is
                if Current_Delivery.Amount > 0 then
                   Logger.Log (Module => 1, Sender => "Unloading",
                   Message => "Giving product to the robot.");
-                  Current_Delivery.Give_Product (Amount_Taken => 1);
+                  Current_Delivery.Check_Amount (Temp_Amount);
+                  if Temp_Amount >= Hand_Size then
+                     Current_Delivery.Give_Product (Amount_Taken => Hand_Size);
+                  else
+                     Current_Delivery.Give_Product (Amount_Taken => Positive (Temp_Amount));
+                  end if;
                else
                   Has_Delivery := False;
                   Logger.Log (Module => 1, Sender => "Unloading",
