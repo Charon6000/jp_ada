@@ -3,6 +3,7 @@ with Hub;
 with Unloading;
 with Truck;
 with Robot;
+with Monitor;
 --  Main procedure of the project
 procedure jp_ada is
    --  Creating robots

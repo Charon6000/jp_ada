@@ -25,6 +25,10 @@ package Global_Types is
    --  Constants
    Max_Hub_Capacity : constant Natural := 100;
    Max_Truck_Waiting_Time : constant Natural := 20;
+   Max_Battery              : constant Natural := 100;
+   Low_Battery_Threshold    : constant Natural := 20;
+   Battery_Cost_Per_Stage   : constant Natural := 5; 
+   Battery_Charge_Per_Tick  : constant Natural := 10;
 private
 
 end Global_Types;

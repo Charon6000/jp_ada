@@ -1,0 +1,72 @@
+Note: Building jp_ada=0.1.0-dev/jp_ada.gpr...
+gprbuild: "jp_ada" up to date
+Success: Build finished successfully in 0.32 seconds.
+[ 1:Truck 1] Arrived delivery number 1
+[ 1:Truck 2] Arrived delivery number 2
+[ 1:Truck 3] Arrived delivery number 3
+[ 1:Truck 4] Arrived delivery number 4
+[ 3:Hub] I have  0 products
+[ 1:Unloading 3] Waiting for new delivery
+[ 1:Truck 2] Looking for unloader
+[ 2:Robot 3] Waiting for instructions 
+[ 1:Unloading 2] Waiting for new delivery
+[ 1:Truck 3] Looking for unloader
+[ 1:Truck 4] Looking for unloader
+[ 1:Truck 1] Looking for unloader
+[ 1:Unloading 1] Starting to unload  1 delivery
+[ 2:Robot 1] Waiting for instructions 
+[ 2:Robot 2] Waiting for instructions 
+[ 2:Robot 3] Waiting for instructions 
+[ 1:Unloading 3] Waiting for new delivery
+[ 1:Truck 4] Looking for unloader
+[ 1:Truck 2] Looking for unloader
+[ 1:Truck 3] Looking for unloader
+[ 1:Unloading 2] Starting to unload  2 delivery
+[ 2:Robot 1] Waiting for instructions 
+[ 2:Robot 2] Waiting for instructions 
+[ 1:Truck 1] Is being unloaded
+[ 1:Truck 1] Gave  3 of LAPTOP to unloader
+[ 1:Unloading 1] Taking LAPTOP x  3. Now have  3
+[ 1:Truck 1] Gave  3 of LAPTOP to unloader
+[ 1:Unloading 1] Taking LAPTOP x  3. Now have  6
+=== STAN CENTRUM LOGISTYCZNEGO ===
+Magazyn ogolem: 0/40 szt.
+- Laptopy: 0 szt.
+- Telewizory: 0 szt.
+- Pralki: 0 szt.
+==================================
+[ 2:Robot 3] Waiting for instructions 
+[ 1:Truck 4] Looking for unloader
+[ 1:Truck 3] Looking for unloader
+[ 3:Hub] I have  0 products
+[ 1:Unloading 3] Starting to unload  3 delivery
+[ 1:Truck 2] Is being unloaded
+[ 1:Truck 2] Gave  4 of PRALKA to unloader
+[ 1:Unloading 2] Taking PRALKA x  4. Now have  4
+[ 1:Truck 2] Gave  4 of PRALKA to unloader
+[ 1:Unloading 2] Taking PRALKA x  4. Now have  8
+[ 1:Truck 1] Gave  3 of LAPTOP to unloader
+[ 1:Unloading 1] Taking LAPTOP x  3. Now have  9
+[ 2:Robot 2] Comming to unloader nr. 2. I must do  8
+[ 1:Truck 4] Looking for unloader
+[ 3:Hub] I have  0 products
+[ 2:Robot 1] Comming to unloader nr. 1. I must do  6
+[ 1:Truck 2] Gave  2 of PRALKA to unloader
+[ 1:Truck 2] Empty,  running away.
+[ 1:Unloading 2] Taking PRALKA x  2. Now have  10
+[ 1:Truck 3] Is being unloaded
+[ 1:Truck 3] Gave  2 of TELEWIZOR to unloader
+[ 1:Unloading 3] Taking TELEWIZOR x  2. Now have  2
+[ 1:Truck 3] Gave  2 of TELEWIZOR to unloader
+[ 1:Unloading 3] Taking TELEWIZOR x  2. Now have  4
+[ 1:Truck 1] Gave  3 of LAPTOP to unloader
+[ 1:Unloading 1] Taking LAPTOP x  3. Now have  12
+[ 1:Truck 4] Looking for unloader
+[ 3:Hub] I have  0 products
+[ 2:Robot 3] Comming to unloader nr. 3. I must do  4
+[ 1:Truck 1] Gave  3 of LAPTOP to unloader
+[ 1:Unloading 1] Taking LAPTOP x  3. Now have  15
+[ 1:Truck 3] Gave  2 of TELEWIZOR to unloader
+[ 1:Unloading 3] Taking TELEWIZOR x  2. Now have  6
+[ 1:Unloading 2] Closing delivery from truck  2
+[ 1:Unloading 2] Gave  1 of PRALKA to robot
