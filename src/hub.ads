@@ -8,8 +8,8 @@ package Hub is
       Count : Natural
       );
       entry Check_Capacity (Count : out Integer);
-      entry Increase_Max(Count : Natural);
-      entry GetStatus(OutStatus : out Hub_Status);
+      entry Increase_Max (Count : Natural);
+      entry GetStatus (OutStatus : out Hub_Status);
       entry Kill;
    end Hub_Task;
 end Hub;

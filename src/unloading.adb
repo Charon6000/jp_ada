@@ -15,6 +15,12 @@ package body Unloading is
    begin
       while not Finish loop
          select
+            accept GetStatus (OutStatus : out Unloader_Status) do
+               OutStatus.ID := ID;
+               OutStatus.Remaining_Amount := Remaining_Amount;
+               OutStatus.Has_Delivery := Has_Delivery;
+            end GetStatus;
+         or
             when not Has_Delivery =>
                accept New_Delivery (New_Delivery : Truck.Truck_Access) do
                   New_Delivery.Start_Unloading;
@@ -44,10 +50,10 @@ package body Unloading is
                Total := Full_Amount;
             end Get_Full_Amount;
          or
-            accept Check_Amount(Current_Amount : out Natural) do
+            accept Check_Amount (Current_Amount : out Natural) do
                Current_Amount := Remaining_Amount;
             end Check_Amount;
-         or 
+         or
             accept Kill do
                Finish := True;
             end Kill;
@@ -66,15 +72,18 @@ package body Unloading is
                      Remaining_Amount := Remaining_Amount + Hand_Size;
                      Logger.Log (Module => 1, Sender => "Unloading" &
                      Unloader_Id'Image (ID),
-                     Message => "Taking "& Product_Type'Image (Current_Delivery.Product)
+                     Message => "Taking " &
+                     Product_Type'Image (Current_Delivery.Product)
                      & " x " & Positive'Image (Hand_Size) & ". Now have " &
                      Natural'Image (Remaining_Amount));
                   else
-                     Current_Delivery.Give_Product (Amount_Taken => Positive (Temp_Amount));
+                     Current_Delivery.Give_Product (
+                        Amount_Taken => Positive (Temp_Amount));
                      Remaining_Amount := Remaining_Amount + Temp_Amount;
                      Logger.Log (Module => 1, Sender => "Unloading" &
                      Unloader_Id'Image (ID),
-                     Message => "Taking "& Product_Type'Image (Current_Delivery.Product)
+                     Message => "Taking " &
+                     Product_Type'Image (Current_Delivery.Product)
                      & " x " & Positive'Image (Temp_Amount) & ". Now have " &
                      Natural'Image (Remaining_Amount));
                   end if;

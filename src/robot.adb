@@ -1,7 +1,7 @@
 with Charger;
 with Logger;
 with Hub;
-with Charger;
+with Monitor;
 package body Robot is
    task body Robot_Task is
       Finish : Boolean := False;
@@ -9,13 +9,12 @@ package body Robot is
       X : Zakres;
       Temp_Amount : Natural := 0;
       Is_Transporting : Boolean := False;
-      Current_Product : Product_Type;
+      Current_Product : Product_Type := Laptop;
       Current_Unloader : Unloading.Unloading_Access;
       Current_Amount : Natural := 0;
       Delivered : Natural := 0;
       Full_Amount : Natural := 0;
       Battery_Value : Natural := Max_Battery;
-      
       procedure Decrease_Battery is
       begin
          Battery_Value := Battery_Value - Battery_Cost_Per_Stage;
@@ -52,9 +51,9 @@ package body Robot is
                end Transport;
                Is_Transporting := True;
             or
-            accept Kill do
-               Finish := True;
-            end Kill;
+               accept Kill do
+                  Finish := True;
+               end Kill;
             or
                delay 2.0;
                Logger.Log (Module => 2, Sender => "Robot" &
@@ -85,10 +84,14 @@ package body Robot is
                      Decrease_Battery;
                      Logger.Log (Module => 2, Sender => "Robot" &
                      Robot_Id'Image (ID),
-                     Message => "Comming to unloader nr."&
+                     Message => "Comming to unloader nr." &
                      Unloader_Id'Image (Current_Unloader.ID) &
                      ". I must do " &
                      Natural'Image (Temp_Amount));
+                     Monitor.Reporter.SetRobotStatus (
+                        ID, Current_Amount, Battery_Value,
+                        Delivered, Is_Transporting, Current_Product
+                     );
                      --  Getting product from unloader
                      delay Duration (X);
                      X := Random.Random (Gen);
@@ -98,7 +101,12 @@ package body Robot is
                      else
                         Current_Amount := Temp_Amount;
                      end if;
-                     Current_Unloader.Give_Product(Amount_Taken => Positive(Current_Amount));
+                     Current_Unloader.Give_Product (
+                        Amount_Taken => Positive (Current_Amount));
+                     Monitor.Reporter.SetRobotStatus (
+                        ID, Current_Amount, Battery_Value,
+                        Delivered, Is_Transporting, Current_Product
+                     );
                      --  Stage 2 - transporting product to the Hub
                      delay Duration (X);
                      X := Random.Random (Gen);
@@ -110,6 +118,10 @@ package body Robot is
                      " x " &
                      Product_Type'Image (Current_Product) &
                      " to Hub.");
+                     Monitor.Reporter.SetRobotStatus (
+                        ID, Current_Amount, Battery_Value,
+                        Delivered, Is_Transporting, Current_Product
+                     );
                      --  Stage 3 - Transport Completed
                      delay Duration (X);
                      X := Random.Random (Gen);
@@ -134,6 +146,10 @@ package body Robot is
                         Message => "Unloader is empty");
                         Current_Unloader.Kill;
                      end if;
+                     Monitor.Reporter.SetRobotStatus (
+                        ID, Current_Amount, Battery_Value,
+                        Delivered, Is_Transporting, Current_Product
+                     );
                   end loop;
                end if;
             end select;

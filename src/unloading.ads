@@ -8,6 +8,7 @@ package Unloading is
       entry Check_Amount (Current_Amount : out Natural);
       entry Give_Product (Amount_Taken : Positive);
       entry Get_Full_Amount (Total : out Natural);
+      entry GetStatus (OutStatus : out Unloader_Status);
       entry Kill;
    end Unloading_Task;
    type Unloading_Access is access all Unloading_Task;

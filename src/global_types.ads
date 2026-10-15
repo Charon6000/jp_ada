@@ -35,8 +35,21 @@ package Global_Types is
       Remaining_Amount : Natural;
    end record;
 
+   type Unloader_Status is record
+      ID : Unloader_Id;
+      Has_Delivery : Boolean;
+      Remaining_Amount : Natural;
+   end record;
+
+   type Robot_Status is record
+      ID : Robot_Id;
+      Current_Amount : Natural;
+      Battery_Value : Natural;
+      Delivered : Natural;
+      Is_Transporting : Boolean;
+      Current_Product : Product_Type;
+   end record;
    --  Arrays
-   
    --  Constants
    Max_Hub_Capacity : constant Natural := 100;
    Max_Truck_Waiting_Time : constant Natural := 20;
@@ -44,6 +57,7 @@ package Global_Types is
    Low_Battery_Threshold : constant Natural := 20;
    Battery_Cost_Per_Stage : constant Natural := 5;
    Max_Charging_Time : Natural := 10;
+   Report_Time : Duration := 5.0;
 private
 
 end Global_Types;
