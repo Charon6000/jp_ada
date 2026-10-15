@@ -1,6 +1,4 @@
-with Ada.Text_IO;
 with Logger;
-
 package body Charger is
    --  Making an object for robots not to go at the same time
    protected Station is
@@ -12,9 +10,10 @@ package body Charger is
       begin
          Logger.Log_S (Module => "E", Sender => "Charger",
          Message => "Charging robot" & Global_Types.Robot_Id'Image (ID));
-         delay Duration (Natural (Global_Types.Max_Battery - Battery)/10);
+         delay Duration (Natural (Global_Types.Max_Battery - Battery) / 10);
          Logger.Log_S (Module => "E", Sender => "Charger",
-         Message => "Robot" & Global_Types.Robot_Id'Image (ID) & " is charged");
+         Message => "Robot" &
+         Global_Types.Robot_Id'Image (ID) & " is charged");
       end Charge_Robot;
    end Station;
 

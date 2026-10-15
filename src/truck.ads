@@ -10,7 +10,7 @@ package Truck is
    entry Start_Unloading;
    entry Give_Product (Amount_Taken : Positive);
    entry Check_Amount (Products_Amount : out Natural);
-   entry GetStatus(OutStatus : out Truck_Status);
+   entry GetStatus (OutStatus : out Truck_Status);
    end Truck_Task;
    type Truck_Access is access all Truck.Truck_Task;
 end Truck;
