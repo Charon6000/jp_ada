@@ -42,14 +42,13 @@ package body Truck is
             Logger.Log (Module => 1, Sender => "Truck" &
             Truck_Id'Image (ID),
             Message => "Is being unloaded");
-         else
-            if not Is_Unloading then
+         or
+            when not Is_Unloading =>
                delay Duration (Max_Truck_Waiting_Time / 10);
                Logger.Log (Module => 1, Sender => "Truck" &
                Truck_Id'Image (ID),
                Message => "Looking for unloader");
                Waiting_Time := Waiting_Time + Max_Truck_Waiting_Time / 10;
-            end if;
          end select;
       end loop;
    end Truck_Task;

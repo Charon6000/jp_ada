@@ -72,5 +72,8 @@ package body Hub is
          end select;
       end loop;
       Logger.Log (3, "Hub", "I am full");
+      Status.Together := Capacity;
+      Status.Max := Natural'Min (Max_In_Unloaders, Max_Hub_Capacity);
+      SayStatus (Status);
    end Hub_Task;
 end Hub;
