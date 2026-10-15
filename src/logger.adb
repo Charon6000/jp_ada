@@ -16,9 +16,13 @@ package body Logger is
          Printer.Print ("[" & Integer'Image (Module) &
          ":" & Sender & "] " & Message);
    end Log;
-   procedure Log_Raport (Header : String; Message : String) is
+   procedure Log_S (Module : String; Sender : String; Message : String) is
    begin
-         Printer.Print (Header);
+         Printer.Print ("[" & Module &
+         ":" & Sender & "] " & Message);
+   end Log_S;
+   procedure Log_Raport (Message : String) is
+   begin
          Printer.Print (Message);
    end Log_Raport;
 end Logger;

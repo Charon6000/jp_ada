@@ -22,6 +22,13 @@ package body Truck is
             exit;
          end if;
          select
+            accept GetStatus (OutStatus : out Truck_Status) do
+               OutStatus.ID := ID;
+               OutStatus.Is_Unloading := Is_Unloading;
+               OutStatus.Remaining_Amount := Remaining_Amount;
+               OutStatus.Waiting_Time := Waiting_Time;
+            end GetStatus;
+         or
             accept Give_Product (Amount_Taken : Positive) do
                Remaining_Amount := Remaining_Amount - Amount_Taken;
                Logger.Log (Module => 1, Sender => "Truck" &
@@ -42,14 +49,13 @@ package body Truck is
             Logger.Log (Module => 1, Sender => "Truck" &
             Truck_Id'Image (ID),
             Message => "Is being unloaded");
-         else
-            if not Is_Unloading then
+         or
+            when not Is_Unloading =>
                delay Duration (Max_Truck_Waiting_Time / 10);
                Logger.Log (Module => 1, Sender => "Truck" &
                Truck_Id'Image (ID),
                Message => "Looking for unloader");
                Waiting_Time := Waiting_Time + Max_Truck_Waiting_Time / 10;
-            end if;
          end select;
       end loop;
    end Truck_Task;

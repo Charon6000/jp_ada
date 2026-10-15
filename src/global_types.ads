@@ -20,11 +20,30 @@ package Global_Types is
       Amount : Natural;
    end record;
 
+   type Hub_Status is record
+      Together : Natural;
+      Max : Natural;
+      Laptops : Natural;
+      TVs : Natural;
+      Washingmashines : Natural;
+   end record;
+
+   type Truck_Status is record
+      ID : Truck_Id;
+      Is_Unloading : Boolean;
+      Waiting_Time : Natural;
+      Remaining_Amount : Natural;
+   end record;
+
    --  Arrays
    
    --  Constants
    Max_Hub_Capacity : constant Natural := 100;
    Max_Truck_Waiting_Time : constant Natural := 20;
+   Max_Battery : constant Natural := 100;
+   Low_Battery_Threshold : constant Natural := 20;
+   Battery_Cost_Per_Stage : constant Natural := 5;
+   Max_Charging_Time : Natural := 10;
 private
 
 end Global_Types;
