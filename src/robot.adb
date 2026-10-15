@@ -1,5 +1,7 @@
+with Charger;
 with Logger;
 with Hub;
+with Charger;
 package body Robot is
    task body Robot_Task is
       Finish : Boolean := False;
@@ -12,6 +14,27 @@ package body Robot is
       Current_Amount : Natural := 0;
       Delivered : Natural := 0;
       Full_Amount : Natural := 0;
+      Battery_Value : Natural := 20;
+      
+      procedure Decrease_Battery is
+      begin
+         Battery_Value := Battery_Value - Battery_Cost_Per_Stage;
+         if Battery_Value <= Low_Battery_Threshold then
+            Logger.Log (Module => 2, Sender => "Robot" &
+            Robot_Id'Image (ID),
+            Message => "Low battery, going to charge.");
+            delay 5.0;
+            Logger.Log (Module => 2, Sender => "Robot" &
+            Robot_Id'Image (ID),
+            Message => "Waiting to charge");
+            Charger.Charge_Robot (ID, Battery_Value);
+            Logger.Log (Module => 2, Sender => "Robot" &
+            Robot_Id'Image (ID),
+            Message => "Fully charged, going back to work.");
+            Battery_Value := Global_Types.Max_Battery;
+            delay 5.0;
+         end if;
+      end Decrease_Battery;
    begin
       Random.Reset (Gen);
       X := Random.Random (Gen);
@@ -59,6 +82,7 @@ package body Robot is
                      --  Stage 1 - comming to the unloader
                      delay Duration (X);
                      X := Random.Random (Gen);
+                     Decrease_Battery;
                      Logger.Log (Module => 2, Sender => "Robot" &
                      Robot_Id'Image (ID),
                      Message => "Comming to unloader nr."&
@@ -68,6 +92,7 @@ package body Robot is
                      --  Getting product from unloader
                      delay Duration (X);
                      X := Random.Random (Gen);
+                     Decrease_Battery;
                      if Temp_Amount >= Hand_Size then
                         Current_Amount := Hand_Size;
                      else
@@ -77,6 +102,7 @@ package body Robot is
                      --  Stage 2 - transporting product to the Hub
                      delay Duration (X);
                      X := Random.Random (Gen);
+                     Decrease_Battery;
                      Logger.Log (Module => 2, Sender => "Robot" &
                      Robot_Id'Image (ID),
                      Message => "Transporting" &
@@ -87,6 +113,7 @@ package body Robot is
                      --  Stage 3 - Transport Completed
                      delay Duration (X);
                      X := Random.Random (Gen);
+                     Decrease_Battery;
                      Hub.Hub_Task.Get (Product_gotten => Current_Product,
                      Count => Current_Amount);
                      Logger.Log (Module => 2, Sender => "Robot" &

@@ -10,4 +10,5 @@ package Robot is
       );
       entry Kill;
    end Robot_Task;
+   type Robot_Access is access all Robot_Task;
 end Robot;

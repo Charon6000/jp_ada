@@ -6,9 +6,9 @@ with Robot;
 --  Main procedure of the project
 procedure jp_ada is
    --  Creating robots
-   Robot1 : Robot.Robot_Task (ID => 1, Hand_Size => 1);
+   Robot1 : Robot.Robot_Task (ID => 1, Hand_Size => 3);
    Robot2 : Robot.Robot_Task (ID => 2, Hand_Size => 1);
-   Robot3 : Robot.Robot_Task (ID => 3, Hand_Size => 1);
+   Robot3 : Robot.Robot_Task (ID => 3, Hand_Size => 2);
    --  Creating Unloaders
    Unloader1 : constant Unloading.Unloading_Access := new Unloading.Unloading_Task (ID => 1, Hand_Size => 3);
    Unloader2 : constant Unloading.Unloading_Access := new Unloading.Unloading_Task (ID => 2, Hand_Size => 4);
