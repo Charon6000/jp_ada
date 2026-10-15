@@ -14,7 +14,7 @@ package body Robot is
       Current_Amount : Natural := 0;
       Delivered : Natural := 0;
       Full_Amount : Natural := 0;
-      Battery_Value : Natural := 20;
+      Battery_Value : Natural := Max_Battery;
       
       procedure Decrease_Battery is
       begin

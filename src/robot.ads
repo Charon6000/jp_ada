@@ -1,7 +1,6 @@
 with Global_Types;
 use Global_Types;
 with Unloading;
-
 package Robot is
    task type Robot_Task (ID : Robot_Id; Hand_Size : Positive) is
       entry Transport (

@@ -2,7 +2,6 @@ with Global_Types;
 use Global_Types;
 
 package Hub is
-   procedure SayStatus (Status : Hub_Status);
    task Hub_Task is
       entry Get (
       Product_gotten : Product_Type;
@@ -10,6 +9,7 @@ package Hub is
       );
       entry Check_Capacity (Count : out Integer);
       entry Increase_Max(Count : Natural);
+      entry GetStatus(OutStatus : out Hub_Status);
       entry Kill;
    end Hub_Task;
 end Hub;

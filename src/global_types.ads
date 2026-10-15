@@ -28,6 +28,13 @@ package Global_Types is
       Washingmashines : Natural;
    end record;
 
+   type Truck_Status is record
+      ID : Truck_Id;
+      Is_Unloading : Boolean;
+      Waiting_Time : Natural;
+      Remaining_Amount : Natural;
+   end record;
+
    --  Arrays
    
    --  Constants

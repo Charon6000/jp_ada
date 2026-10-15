@@ -3,26 +3,12 @@ with Ada.Characters.Latin_1;
 use Ada.Characters.Latin_1;
 
 package body Hub is
-   procedure SayStatus (Status : Hub_Status) is
-      Raport : String := ""
-      & LF & "==========   Status   =========="
-      & LF & "- Laptops          " & Natural'Image (Status.Laptops)
-      & LF & "- TVs              " & Natural'Image (Status.TVs)
-      & LF & "- Washingmashines  " & Natural'Image (Status.Washingmashines)
-      & LF & "- Together         " & Natural'Image (Status.Together)
-      & LF & "- Max              " & Natural'Image (Status.Max)
-      & LF & "========   End Status   ========"
-      & LF & "";
-   begin
-      Logger.Log_Raport (Message => Raport);
-   end SayStatus;
-
    task body Hub_Task is
       --  constants
       Capacity : Natural := 0;
       Finish : Boolean := False;
       Max_In_Unloaders : Natural := 0;
-      Status : Hub_Status;
+      Status : Hub_Status := (Laptops => 0, TVs => 0, Washingmashines => 0, Together => 0, Max => 0);
    begin
       --  behaviour
       while not Finish loop
@@ -62,18 +48,18 @@ package body Hub is
                Max_In_Unloaders :=  Max_In_Unloaders + Count;
             end Increase_Max;
          or
+            accept GetStatus (OutStatus : out Hub_Status) do
+               Status.Together := Capacity;
+               Status.Max := Natural'Min (Max_In_Unloaders, Max_Hub_Capacity);
+               OutStatus := Status;
+            end GetStatus;
+         or
             accept Kill;
             Finish := True;
-         or
-            delay 4.0;
-            Status.Together := Capacity;
-            Status.Max := Natural'Min (Max_In_Unloaders, Max_Hub_Capacity);
-            SayStatus (Status);
          end select;
       end loop;
       Logger.Log (3, "Hub", "I am full");
       Status.Together := Capacity;
       Status.Max := Natural'Min (Max_In_Unloaders, Max_Hub_Capacity);
-      SayStatus (Status);
    end Hub_Task;
 end Hub;

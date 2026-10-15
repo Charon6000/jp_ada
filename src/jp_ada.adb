@@ -1,8 +1,9 @@
 with Global_Types;
-with Hub;
 with Unloading;
 with Truck;
 with Robot;
+with Hub;
+with Monitor;
 --  Main procedure of the project
 procedure jp_ada is
    --  Creating robots
@@ -44,5 +45,10 @@ begin
    Robot1.Transport (Product => Global_Types.Laptop, Unloader => Unloader1);
    Robot2.Transport (Product => Global_Types.Pralka, Unloader => Unloader2);
    Robot3.Transport (Product => Global_Types.Telewizor, Unloader => Unloader3);
+   --  Assigning workers to monitor
+   Monitor.Reporter.AddTruck(1, Simple_Truck1);
+   Monitor.Reporter.AddTruck(2, Simple_Truck2);
+   Monitor.Reporter.AddTruck(3, Simple_Truck3);
+   Monitor.Reporter.AddTruck(4, Simple_Truck4);
    
 end jp_ada;
