@@ -20,6 +20,14 @@ package Global_Types is
       Amount : Natural;
    end record;
 
+   type Hub_Status is record
+      Together : Natural;
+      Max : Natural;
+      Laptops : Natural;
+      TVs : Natural;
+      Washingmashines : Natural;
+   end record;
+
    --  Arrays
    
    --  Constants

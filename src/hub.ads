@@ -2,6 +2,7 @@ with Global_Types;
 use Global_Types;
 
 package Hub is
+   procedure SayStatus (Status : Hub_Status);
    task Hub_Task is
       entry Get (
       Product_gotten : Product_Type;

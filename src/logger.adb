@@ -21,9 +21,8 @@ package body Logger is
          Printer.Print ("[" & Module &
          ":" & Sender & "] " & Message);
    end Log_S;
-   procedure Log_Raport (Header : String; Message : String) is
+   procedure Log_Raport (Message : String) is
    begin
-         Printer.Print (Header);
          Printer.Print (Message);
    end Log_Raport;
 end Logger;
